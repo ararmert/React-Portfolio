@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import React from 'react';
 
 
 const user = {
@@ -95,9 +95,17 @@ function UpComing() {
       {feature.title}
     </li>
   );
-  return (
+  return ( // In React, a components return must have one root element. But often you dont actually want to wrap things in an extra <div>. That would clutter your DOM with unnecessary <div>s.
+     <>   
+    <div style ={{
+      backgroundColor: 'black', 
+      width: '100px', 
+      height: '100px'
+      }}/>
+
+    <h1>Upcoming Features:</h1>
     <ul>{listFeatures}</ul>
-  
+    </>
   );
 }
 
