@@ -13,21 +13,34 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: React/an-app   
+        working-directory: React/an-app
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Show repo layout (sanity check)
+        run: |
+          pwd
+          ls -la
+          cat package.json | head -n 40
+          test -f package-lock.json && echo "Lockfile present"
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: React/an-app/package-lock.json 
+          cache-dependency-path: React/an-app/package-lock.json
 
-      - run: npm ci
-      - run: npm run build
+      - name: Install deps
+        run: npm ci
 
-      - uses: JamesIves/github-pages-deploy-action@v4
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: React/an-app/build   
+          folder: React/an-app/build
