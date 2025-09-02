@@ -103,24 +103,28 @@ function UpComing() {
 
 export default function App() { // main component in the JS file
   const [page, setPage] = useState("home");
+  const views = {
+    home: <Profile />,
+    about: <About />,
+    upcoming: <UpComing />
+  };
     
     return (
         <div>
-           
+            {views[page]}
             
-            {page === "home" ? <Profile /> : <About />}
-            {page === "home" ? <Profile /> : <UpComing />}
+            {page == "home" ? ( // if on home run the first block, show 2 buttons
+              <>
+              <AButton setPage={setPage} target="about"    label="About" />
+              <BButton setPage={setPage} target="upcoming" label="Upcoming Features" />   
 
+              </>
+            ) : ( // if not on home, only 1 button to go back home
+              <AButton setPage={setPage} target="home" label="Go Back" />
+
+            )}
             
-            {page === "home" 
-            ? <AButton setPage={setPage} target= "about" label={"About"} />
-            : <AButton setPage={setPage} target= "home" label={"Go Back"} />
-}
-            {page === "home" 
-            ? <BButton setPage={setPage} target= "upcoming" label={"Upcoming Features"} />
-            : <BButton setPage={setPage} target= "home" label={"Go Back"} />
-}
-            
+          
 
         </div>
     );
