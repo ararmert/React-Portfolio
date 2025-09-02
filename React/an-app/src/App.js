@@ -99,11 +99,11 @@ function UpComing() {
      <>   
     <div style ={{
       backgroundColor: 'black', 
-      width: '100px', 
-      height: '100px'
+      width: '10000px', 
+      height: '10000px'
       }}/>
-
-    <h1>Upcoming Features:</h1>
+    
+    <h1 style={{ color: 'white' }}>Upcoming Features</h1>
     <ul>{listFeatures}</ul>
     </>
   );
