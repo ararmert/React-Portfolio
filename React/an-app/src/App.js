@@ -50,7 +50,7 @@ function Profile() {
       <img 
         className = "avatar"
         src={user.imageUrl}
-        
+        alt= ''
         style={{
           width: user.imagesize,
           height: user.imagesize
@@ -113,7 +113,7 @@ export default function App() { // main component in the JS file
         <div>
             {views[page]}
             
-            {page == "home" ? ( // if on home, run the first block, show 2 buttons
+            {page === "home" ? ( // if on home, run the first block, show 2 buttons
               <>
               <AButton setPage={setPage} target="about"    label="About" />
               <BButton setPage={setPage} target="upcoming" label="Upcoming Features" />   
