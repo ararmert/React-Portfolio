@@ -48,11 +48,11 @@ function About() {
       <h1>Technical Skills</h1>
       <h2>Programming languages</h2>
       <ul>
-        <li>C</li>
+        <li><a href="https://github.com/ararmert/sysprak">C</a></li>
         <li>Java</li>
-        <li>Python</li>
+        <li><a href="https://github.com/imanigma/TradeRepublic_CDTMHacks25">Python</a></li>
         <li>Haskell</li>
-        <li>Currently learning JavaScript and React</li>
+        <li>Currently learning JavaScript and <a href="https://github.com/ararmert/React-Portfolio">React</a></li>
       </ul>
     
     
