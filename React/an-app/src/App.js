@@ -25,6 +25,24 @@ function AButton({ setPage, target, label}) {
 }
 
 
+function BButton({ setPage, target, label}) {
+    function click() {
+      alert('See, I know how to make buttons :)')
+      setPage(target);
+      
+    }
+
+    return (
+        <button onClick={click}>
+          {label}
+        </button>
+    );
+}
+
+
+
+
+
 function Profile() {
   return (
     <>
@@ -60,6 +78,29 @@ function About() {
   );
 }
 
+
+function UpComing() {
+  const upcomingfeatures = [
+    { title: 'Tic-Tac-Toe', isNext: true, id: 1},
+    { title: 'Pong', isNext: false, id: 2},
+    { title: '... and more!', isNext:false, id: 3},
+  ];
+
+    const listFeatures = upcomingfeatures.map(feature =>
+    <li 
+        key={feature.id}
+        style={{
+          color: feature.isNext ? 'yellow' : 'darkred'
+        }}>
+      {feature.title}
+    </li>
+  );
+  return (
+    <ul>{listFeatures}</ul>
+  
+  );
+}
+
 export default function App() { // main component in the JS file
   const [page, setPage] = useState("home");
     
@@ -68,10 +109,16 @@ export default function App() { // main component in the JS file
            
             
             {page === "home" ? <Profile /> : <About />}
+            {page === "home" ? <Profile /> : <UpComing />}
+
             
             {page === "home" 
             ? <AButton setPage={setPage} target= "about" label={"About"} />
             : <AButton setPage={setPage} target= "home" label={"Go Back"} />
+}
+            {page === "home" 
+            ? <BButton setPage={setPage} target= "upcoming" label={"Upcoming Features"} />
+            : <BButton setPage={setPage} target= "home" label={"Go Back"} />
 }
             
 
