@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 
 const user = {
-  name: 'Met Arar',
+  name: 'Mert Arar',
   imageUrl: 'https://i.imgur.com/6yHc5fX.jpeg',
   imagesize: 300,
 
