@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 
 const user = {
-  name: 'Mert rar',
+  name: 'Mert Arar',
   imageUrl: 'https://i.imgur.com/6yHc5fX.jpeg',
   imagesize: 300,
 
@@ -46,7 +46,7 @@ function BButton({ setPage, target, label}) {
 function Profile() {
   return (
     <>
-      <h1> Welcome to the interactive portfolio of Mert Arar </h1>
+      <h1> Welcome to the interactive portfolio of  Arar </h1>
       <img 
         className = "avatar"
         src={user.imageUrl}
