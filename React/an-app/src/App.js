@@ -83,7 +83,9 @@ function UpComing() {
   const upcomingfeatures = [
     { title: 'Tic-Tac-Toe', isNext: true, id: 1},
     { title: 'Pong', isNext: false, id: 2},
-    { title: '... and more!                                                                                                                                                                                                                                                                                                                                            ', isNext:false, id: 3},
+    { title: 'Click counter to only display the annoying message on the first click', isNext: false, id: 4},
+    { title: 'Changelog/Commit list', isNext: false, id: 5},
+    { title: '... and more!                                                                                                                                                                                                                                                ', isNext:false, id: 6},
   ];
 
     const listFeatures = upcomingfeatures.map(feature =>
