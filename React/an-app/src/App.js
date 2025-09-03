@@ -97,7 +97,7 @@ function UpComing() {
   );
   return ( // In React, a components return must have one root element. But often you dont actually want to wrap things in an extra <div>. That would clutter your DOM with unnecessary <div>s.
   
-    <div style ={{ backgroundColor: 'black', minHeight: '100vh' }}> 
+    <div style ={{ backgroundColor: 'black', minHeight: '100vh',  margin: 0}}> 
       <h1 style={{ color: 'white' }}>Upcoming Features</h1>
       <ul>{listFeatures}</ul>
     </div>
