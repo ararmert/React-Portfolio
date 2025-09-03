@@ -83,7 +83,7 @@ function UpComing() {
   const upcomingfeatures = [
     { title: 'Tic-Tac-Toe', isNext: true, id: 1},
     { title: 'Pong', isNext: false, id: 2},
-    { title: '... and more!', isNext:false, id: 3},
+    { title: '... and more!                                                                                                                                                                                                                                                                                                                                            ', isNext:false, id: 3},
   ];
 
     const listFeatures = upcomingfeatures.map(feature =>
