@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import React from 'react';
 
 const user = {
@@ -122,8 +122,7 @@ function UpComing() {
 export default function App() { // main component in the JS file
   
   const [page, setPage] = useState("home");
-  const clicked = useRef(new Set());
-
+  
   const views = {
     home: <Profile />,
     about: <About />,
