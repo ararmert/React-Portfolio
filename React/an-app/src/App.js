@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import React from 'react';
-
 
 const user = {
   name: 'Mert Arar',
@@ -9,48 +8,49 @@ const user = {
 
 };
 
-
-function AButton({ setPage, target, label}) {
-    function click() {
-      alert('See, I know how to make buttons :)')
-      setPage(target);
-      
+function AButton({ setPage, target, label }) {
+  function click() {
+    const key = `clicked:${target}`; // unique per target
+    if (!localStorage.getItem(key)) {
+      alert(`See, I know how to make a button :)`);
+      localStorage.setItem(key, '1');
     }
-
-    return (
-        <button onClick={click}>
-          {label}
-        </button>
-    );
+    setPage(target);
+  }
+  return <button onClick={click}>{label}</button>;
 }
 
-
-function BButton({ setPage, target, label}) {
+function BButton({ setPage, target, label }) {
+   
     function click() {
-      alert('See, I know how to make buttons :)')
-      setPage(target);
-      
+    const key = `clicked:${target}`; // unique per target
+    if (!localStorage.getItem(key)) {
+      alert(`See, I know how to make 2 buttons :)`);
+      localStorage.setItem(key, '1');
     }
-
-    return (
-        <button onClick={click}>
-          {label}
-        </button>
-    );
+    setPage(target);
+  }
+  return <button onClick={click}>{label}</button>;
 }
 
-
-
-
+function CButton({ setPage, target, label }) {
+   
+    function click() {
+    setPage(target);
+  }
+  return <button onClick={click}>{label}</button>;
+}
 
 function Profile() {
   return (
     <>
-      <h1> Welcome to the interactive portfolio of Mert Arar </h1>
+      <h1> Welcome to the interactive portfolio of 
+        Mert Arar </h1>
       <img 
         className = "avatar"
         src={user.imageUrl}
         alt= ''
+        align= "center"
         style={{
           width: user.imagesize,
           height: user.imagesize
@@ -70,45 +70,60 @@ function About() {
         <li>Java</li>
         <li><a href="https://github.com/imanigma/TradeRepublic_CDTMHacks25">Python</a></li>
         <li>Haskell</li>
-        <li>Currently learning JavaScript and <a href="https://github.com/ararmert/React-Portfolio">React</a></li>
+        <li>Currently learning JavaScript and <a href="https://github.com/ararmert/React-Portfolio">React</a>, which powers this website.</li>
       </ul>
-    
-    
     </>
   );
 }
-
 
 function UpComing() {
   const upcomingfeatures = [
     { title: 'Tic-Tac-Toe', isNext: true, id: 1},
     { title: 'Pong', isNext: false, id: 2},
-    { title: 'Click counter to only display the annoying message on the first click', isNext: false, id: 4},
-    { title: 'Changelog/Commit list', isNext: false, id: 5},
+    { title: 'Proper Changelog/Commit list', isNext: false, id: 5},
     { title: '... and more!                                                                                                                                                                                                                                                ', isNext:false, id: 6},
   ];
 
-    const listFeatures = upcomingfeatures.map(feature =>
-    <li 
-        key={feature.id}
-        style={{
-          color: feature.isNext ? 'yellow' : 'darkred'
-        }}>
-      {feature.title}
-    </li>
+  const done = [
+    { title: 'Click counter to only display the annoying message on the first click', isNext: false, id: 4},
+  ];
+
+  const listFeatures = upcomingfeatures.map(feature =>
+  <li 
+      key={feature.id}
+      style={{
+        color: feature.isNext ? 'yellow' : 'darkred'
+      }}>
+    {feature.title}
+  </li>
+  );
+
+  const doneFeatures = done.map(feature =>
+  <li 
+      key={feature.id}
+      style={{
+        color: 'green'
+      }}>
+    {feature.title}
+  </li>
   );
   return ( // In React, a components return must have one root element. But often you dont actually want to wrap things in an extra <div>. That would clutter your DOM with unnecessary <div>s.
   
     <div style ={{ backgroundColor: 'black', minHeight: '100vh',  margin: 0}}> 
       <h1 style={{ color: 'white' }}>Upcoming Features</h1>
       <ul>{listFeatures}</ul>
+      <h1 style={{ color: 'white' }}>Implemented Features</h1>
+      <ul>{doneFeatures}</ul>
     </div>
   
   );
 }
 
 export default function App() { // main component in the JS file
+  
   const [page, setPage] = useState("home");
+  const clicked = useRef(new Set());
+
   const views = {
     home: <Profile />,
     about: <About />,
@@ -116,22 +131,26 @@ export default function App() { // main component in the JS file
   };
     
     return (
-        <div>
+        <div style={{
+               position: 'absolute',
+               left: '50%',
+               top: '50%',
+               transform: 'translate(-50%, -50%)'
+        }}>
             {views[page]}
             
             {page === "home" ? ( // if on home, run the first block, show 2 buttons
               <>
-              <AButton setPage={setPage} target="about"    label="About" />
-              <BButton setPage={setPage} target="upcoming" label="Upcoming Features" />   
-
+              <br />
+              <AButton setPage={setPage} target="about"    label="About Me"/>
+              &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+              <BButton setPage={setPage} target="upcoming" label="Upcoming Features"/>   
               </>
             ) : ( // if not on home, only 1 button to go back home
-              <AButton setPage={setPage} target="home" label="Go Back" />
+              <CButton setPage={setPage} target="home" label="Go Back"/>
 
             )}
-            
-          
-
-        </div>
+          </div>
     );
 }
+
