@@ -121,6 +121,8 @@ function UpComing() {
 
 export default function App() { // main component in the JS file
   
+  
+
   const [page, setPage] = useState("home");
   
   const views = {
@@ -134,7 +136,8 @@ export default function App() { // main component in the JS file
                position: 'absolute',
                left: '50%',
                top: '50%',
-               transform: 'translate(-50%, -50%)'
+               transform: 'translate(-50%, -50%)',
+               animation: 'fadeIn 2s',
         }}>
             {views[page]}
             
