@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import React from 'react';
+import './App.css';
 
 const user = {
   name: 'Mert Arar',
@@ -92,7 +93,7 @@ function UpComing() {
   <li 
       key={feature.id}
       style={{
-        color: feature.isNext ? 'yellow' : 'darkred'
+        color: feature.isNext ? 'orange' : 'darkred'
       }}>
     {feature.title}
   </li>
@@ -109,11 +110,19 @@ function UpComing() {
   );
   return ( // In React, a components return must have one root element. But often you dont actually want to wrap things in an extra <div>. That would clutter your DOM with unnecessary <div>s.
   
-    <div style ={{ backgroundColor: 'black', minHeight: '100vh',  margin: 0}}> 
-      <h1 style={{ color: 'white' }}>Upcoming Features</h1>
+    <div 
+       style={{
+         display: 'flex',
+         flexDirection: 'column',
+         alignItems: 'center',
+         justifyContent: 'center',
+       }}>
+      <h1 style={{ color: 'black' }}>Upcoming Features</h1>
       <ul>{listFeatures}</ul>
-      <h1 style={{ color: 'white' }}>Implemented Features</h1>
+      <h1 style={{ color: 'black' }}>Implemented Features</h1>
       <ul>{doneFeatures}</ul>
+      
+    
     </div>
   
   );
@@ -121,8 +130,6 @@ function UpComing() {
 
 export default function App() { // main component in the JS file
   
-  
-
   const [page, setPage] = useState("home");
   
   const views = {
@@ -132,13 +139,21 @@ export default function App() { // main component in the JS file
   };
     
     return (
-        <div style={{
-               position: 'absolute',
-               left: '50%',
-               top: '50%',
-               transform: 'translate(-50%, -50%)',
-               animation: 'fadeIn 2s',
-        }}>
+    <div className="entrance-animation"
+       style={page === "upcoming" && page === "about" // TODO: fix animations for the other 2 pages
+         ? {
+             position: 'absolute',
+             left: '50%',
+             top: '50%',
+             transform: 'translate(-50%, -50%)',
+           }
+         : {
+             position: 'absolute',
+             left: '50%',
+             top: '50%',
+             transform: 'translate(-50%, -50%)',
+           }
+       }>
             {views[page]}
             
             {page === "home" ? ( // if on home, run the first block, show 2 buttons
@@ -149,8 +164,11 @@ export default function App() { // main component in the JS file
               <BButton setPage={setPage} target="upcoming" label="Upcoming Features"/>   
               </>
             ) : ( // if not on home, only 1 button to go back home
+               <>
+               <br />
+               &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
               <CButton setPage={setPage} target="home" label="Go Back"/>
-
+              </>
             )}
           </div>
     );

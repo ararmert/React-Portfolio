@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes entrance {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translate(-50%, -50%);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+  }
+}
+
+.entrance-animation {
+  animation: entrance 2s;
+}
+
+.full-background {
+  background-color: black;
+  min-height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
