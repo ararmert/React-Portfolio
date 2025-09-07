@@ -89,6 +89,7 @@ function CButton({ setPage, target, label }) {
 
 function Profile() {
   
+  
   return (
     <>
       <h1 id ="mainH" style={{ color: "darkblue" }}> Welcome to the interactive portfolio of 
